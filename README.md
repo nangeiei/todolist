@@ -4,7 +4,10 @@
 ```
 npm install
 ```
-
+### Start JSON Server
+```
+npm run backend
+```
 ### Compiles and hot-reloads for development
 ```
 npm run serve

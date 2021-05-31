@@ -1,0 +1,22 @@
+{
+  "todoItems": [
+    {
+      "title": "Dentist Appointment",
+      "day": "12 June 2021 at 4:00pm",
+      "reminder": false,
+      "id": 1
+    },
+    {
+      "title": "Buy Groceries",
+      "day": "23 June 2021 at 9:00am",
+      "reminder": false,
+      "id": 2
+    },
+    {
+      "title": "Pay Electricity Bill",
+      "day": "03 June 2021 at 10:00am",
+      "reminder": true,
+      "id": 3
+    }
+  ]
+}
