@@ -1,5 +1,5 @@
 <template>
-  <TransitionRoot v-if="config" as="template" :show="open" ref="popup">
+  <TransitionRoot v-if="config" as="template" :show="open" ref="popup" :class="theme">
     <Dialog
       as="div"
       static
@@ -8,7 +8,18 @@
       :open="open"
     >
       <div
-        class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0"
+        class="
+          flex
+          items-end
+          justify-center
+          min-h-screen
+          pt-4
+          px-4
+          pb-20
+          text-center
+          sm:block
+          sm:p-0
+        "
       >
         <TransitionChild
           as="template"
@@ -20,7 +31,7 @@
           leave-to="opacity-0"
         >
           <DialogOverlay
-            class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+            class="fixed inset-0 bg-skin-dark bg-opacity-75 transition-opacity"
           />
         </TransitionChild>
 
@@ -40,7 +51,21 @@
           leave-to="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
         >
           <div
-            class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
+            class="
+              inline-block
+              align-bottom
+              bg-white
+              rounded-lg
+              text-left
+              overflow-hidden
+              shadow-xl
+              transform
+              transition-all
+              sm:my-8
+              sm:align-middle
+              sm:max-w-lg
+              sm:w-full
+            "
           >
             <div
               v-if="config.type"
@@ -49,7 +74,19 @@
               <div class="sm:flex sm:items-center">
                 <div
                   v-if="config.type === 'warning'"
-                  class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10"
+                  class="
+                    mx-auto
+                    flex-shrink-0 flex
+                    items-center
+                    justify-center
+                    h-12
+                    w-12
+                    rounded-full
+                    bg-red-100
+                    sm:mx-0
+                    sm:h-10
+                    sm:w-10
+                  "
                 >
                   <ExclamationIcon
                     class="h-6 w-6 text-red-600"
@@ -58,17 +95,29 @@
                 </div>
                 <div
                   v-if="config.type === 'success'"
-                  class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10"
+                  class="
+                    mx-auto
+                    flex-shrink-0 flex
+                    items-center
+                    justify-center
+                    h-12
+                    w-12
+                    rounded-full
+                    bg-skin-light
+                    sm:mx-0
+                    sm:h-10
+                    sm:w-10
+                  "
                 >
                   <CheckIcon
-                    class="h-6 w-6 text-green-600"
+                    class="h-6 w-6 text-skin-primary"
                     aria-hidden="true"
                   />
                 </div>
                 <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                   <DialogTitle
                     as="h3"
-                    class="text-lg leading-6 font-medium text-gray-900"
+                    class="text-lg leading-6 font-medium text-gray-700"
                   >
                     {{ config.title }}
                   </DialogTitle>
@@ -81,7 +130,7 @@
               </div>
             </div>
             <div
-              class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse"
+              class="bg-skin-light px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse"
               v-if="config.actions"
             >
               <div
@@ -127,6 +176,7 @@ import {
   TransitionRoot,
 } from "@headlessui/vue";
 import { ExclamationIcon, CheckIcon } from "@heroicons/vue/outline";
+import { mapGetters } from 'vuex';
 
 export default {
   name: "Popup",
@@ -173,6 +223,9 @@ export default {
     _confirm() {
       this.resolvePromise(true);
     },
+  },
+  computed: {
+    ...mapGetters(['theme'])
   },
 };
 </script>

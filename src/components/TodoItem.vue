@@ -1,9 +1,9 @@
 <template>
   <div
-    @dblclick="$emit('toggle-reminder', todoItem.id)"
+    @dblclick="onToggle(todoItem)"
     :class="[
-      todoItem.reminder ? 'border-l-4 border-green-400' : '',
-      'todo-item p-4 bg-gray-100 my-3',
+      todoItem.reminder ? 'border-l-4 border-skin-base' : '',
+      'todo-item p-4 bg-skin-light my-3',
     ]"
     v-if="!editing"
   >
@@ -14,14 +14,14 @@
         <!-- Edit -->
         <PencilAltIcon
           @click="onEdit(todoItem.id)"
-          class="h-5 w-5 text-gray-400 mr-1 hover:text-gray-500"
+          class="h-5 w-5 text-gray-500 mr-1 hover:text-gray-700"
           aria-hidden="true"
         />
 
         <!-- Delete -->
         <TrashIcon
           @click="onDelete(todoItem.id)"
-          class="h-5 w-5 items-end text-red-400 cursor-pointer"
+          class="h-5 w-5 items-end text-skin-secondary cursor-pointer"
           aria-hidden="true"
         />
       </div>
@@ -29,11 +29,14 @@
     <p class="font-light text-sm py-2">{{ todoItem.day }}</p>
   </div>
   <AddTodo v-else :populateWith="todoItem" @close="onEdit" />
+  <Popup ref="popup" />
 </template>
 
 <script>
 import { PencilAltIcon, TrashIcon } from "@heroicons/vue/outline";
 import AddTodo from "./AddTodo";
+import Popup from "./Popup";
+import { mapActions } from "vuex";
 
 export default {
   name: "TodoItem",
@@ -41,10 +44,6 @@ export default {
     todoItem: {
       type: Object,
       required: true,
-    },
-    isCompleted: {
-      type: Boolean,
-      default: false,
     },
   },
   data() {
@@ -56,16 +55,42 @@ export default {
     PencilAltIcon,
     TrashIcon,
     AddTodo,
+    Popup,
   },
   methods: {
-    onDelete(id) {
-      this.$emit("delete-item", id);
+    ...mapActions(["deleteTodo", "toggleReminder"]),
+    onToggle(todo) {
+      this.toggleReminder({ ...todo, reminder: !todo.reminder });
     },
     onEdit() {
       this.editing = !this.editing;
     },
+    async onDelete(id) {
+      const dialog = this.$refs.popup;
+      dialog.open = true;
+      const ok = await dialog.displayDialog({
+        type: "warning",
+        title: "Deleting a todo list",
+        description: "Are you sure you want to delete this?",
+        actions: [
+          {
+            text: "Yes",
+            button: "submit",
+            class: "btn-primary",
+          },
+          {
+            text: "No",
+            button: "cancel",
+            class: "btn-primary-outline",
+          },
+        ],
+      });
+      if (ok) {
+        this.deleteTodo(id);
+      }
+    },
   },
-  emits: ["toggle-reminder", "delete-item"],
+  emits: ["toggle-reminder"],
 };
 </script>
 <style scoped>

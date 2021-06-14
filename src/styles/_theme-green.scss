@@ -1,0 +1,17 @@
+@layer base {
+    .green-theme {
+        --color-text-base: 75, 85, 99;
+        --color-primary: 16, 185, 129;
+        --color-primary-light: 52, 211, 153;
+        --color-primary-extra-light: 209, 250, 229;
+        --color-button-primary: 16, 185, 129;
+        --color-button-primary-hover: 52, 211, 153;
+        --color-button-secondary: 254, 226, 226;
+        --color-button-secondary-hover: 248, 113, 113;
+        --color-bg-light: 243, 244, 246;
+        --color-bg-dark: 107, 114, 128;
+        --color-text-secondary: 248, 113, 113;
+        --color-input-ring: 248, 113, 113;
+        --color-fill: 249, 250, 251;
+    }
+}

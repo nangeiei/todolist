@@ -1,22 +1,23 @@
 # todolist
 
 ## Project setup
+
 ```
 npm install
 ```
-### Start JSON Server
+
+### Start JSON Server and Compiles and hot-reloads for development
+
 ```
-npm run backend
-```
-### Compiles and hot-reloads for development
-```
-npm run serve
+npm run start
 ```
 
 ### Compiles and minifies for production
+
 ```
 npm run build
 ```
 
 ### Customize configuration
+
 See [Configuration Reference](https://cli.vuejs.org/config/).

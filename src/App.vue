@@ -1,5 +1,5 @@
 <template>
-  <div class="p-4 pt-12 sm:border mt-8 sm:w-3/4 w-full my-0 mx-auto">
+  <div class="p-4 pt-12 xs:w-3/4 w-full my-0 mx-auto bg-skin-base" :class="theme">
     <Header
       class="mb-8"
       title="todolist"
@@ -12,12 +12,16 @@
 <script>
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import { mapGetters } from 'vuex';
 
 export default {
   name: "App",
   components: {
     Header,
     Footer,
+  },
+  computed: {
+    ...mapGetters(['theme'])
   },
 };
 </script>

@@ -1,0 +1,17 @@
+@layer base {
+    .dark-theme {
+        --color-text-base: 209, 213, 219;
+        --color-primary: 209, 213, 219;
+        --color-primary-light: 107, 114, 128;
+        --color-primary-extra-light: 156, 163, 175;
+        --color-button-primary: 31, 41, 55;
+        --color-button-primary-hover: 55, 65, 81;
+        --color-button-secondary: 229, 231, 235;
+        --color-button-secondary-hover: 75, 85, 99;
+        --color-bg-light: 243, 244, 246;
+        --color-bg-dark: 55, 65, 81;
+        --color-text-secondary: 220, 38, 38;
+        --color-input-ring: 75, 85, 99;
+        --color-fill: 31, 41, 55;
+    }
+}
